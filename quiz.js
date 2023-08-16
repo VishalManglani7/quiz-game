@@ -55,22 +55,24 @@ function displayQuestion() {
     button.innerHTML = answer.text;
     button.classList.add("button");
     //figure out what else you want to do to each button
-    button.addEventListener("click", checkAnswer)
+    button.addEventListener("click", function(){
+      checkAnswer(answer.correct);});
     answersEl.appendChild(button);
   });
 }
 
-function checkAnswer(event){
-    console.log(event.target)
-    console.dir(event.target)
 //how to check if it's correct
-
-
+function checkAnswer(correct){
+    console.log(correct.target)
+    console.dir(correct.target)
+    if(correct){
+      score += 10;}
+    else{
+      secondsLeft -= 15;}
+    }
 
 //move to next question or not
 
-
-}
 
 function setTime() {
   var timeEl = document.querySelector(".timer");
