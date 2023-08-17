@@ -21,8 +21,17 @@ var questions = [
     answers: [
       { text: "Answer 2-1", correct: false },
       { text: "Answer 2-2", correct: false },
-      { text: "Answer 2-3", correct: true },
-      { text: "Answer 2-4", correct: false },
+      { text: "Answer 2-3", correct: false },
+      { text: "Answer 2-4", correct: true },
+    ],
+  },
+  {
+    question: "question 3 goes here?",
+    answers: [
+      { text: "Answer 3-1", correct: true },
+      { text: "Answer 3-2", correct: false },
+      { text: "Answer 3-3", correct: false },
+      { text: "Answer 3-4", correct: false },
     ],
   },
 ];
@@ -54,6 +63,7 @@ function displayQuestion() {
     var button = document.createElement("button");
     button.innerHTML = answer.text;
     button.classList.add("button");
+
     //figure out what else you want to do to each button
     button.addEventListener("click", function(){
       checkAnswer(answer.correct);});
@@ -66,11 +76,15 @@ function checkAnswer(correct){
     console.log(correct.target)
     console.dir(correct.target)
     if(correct){
-      score += 10;}
+      score += 10;
+      correct.target.classList.add("correct");}
     else{
       secondsLeft -= 15;}
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length){
+      displayQuestion()
+    }  
     }
-
 //move to next question or not
 
 
