@@ -80,6 +80,7 @@ function checkAnswer(correct, button){
     console.dir(button)
     if(correct){
       score += 10;
+      console.log(score)
       button.classList.add("correct");}
     else{
       secondsLeft -= 15;
@@ -120,7 +121,7 @@ if (secondsLeft === 0) {
 function endQuiz(){
   quiz.style.display = "none";
   endgame.style.display = "block";
-  var scoreDisplay = document.getElementById("score")
+  var scoreDisplay = document.querySelector(".score");
   scoreDisplay.textContent = "Final score: " + score;
     console.log("ending quiz")
 }
