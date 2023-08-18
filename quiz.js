@@ -55,6 +55,7 @@ function displayQuestion() {
     console.log("Displaying questions")
   var questionEl = document.getElementById("question");
   var answersEl = document.getElementById("answers");
+  answersEl.innerHTML = "";
   var currentQuestion = questions[currentQuestionIndex];
   var questionNum = currentQuestionIndex + 1;
   questionEl.innerHTML = questionNum + currentQuestion.question;
@@ -81,12 +82,15 @@ function checkAnswer(correct, button){
       score += 10;
       button.classList.add("correct");}
     else{
-      secondsLeft -= 15;}
+      secondsLeft -= 15;
+      button.classList.add("inCorrect");
+    }
+    setTimeout(function(){
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length){
       displayQuestion()
     }  
-    }
+    },1000);}
 //move to next question or not
 
 
