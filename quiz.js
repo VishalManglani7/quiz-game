@@ -1,6 +1,7 @@
 var intro = document.getElementById("intro");
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
+var endgame = document.getElementById("game-over")
 
 var secondsLeft
 var currentQuestionIndex
@@ -90,6 +91,9 @@ function checkAnswer(correct, button){
     if (currentQuestionIndex < questions.length){
       displayQuestion()
     }  
+    else {
+      endQuiz();
+    }
     },1000);}
 //move to next question or not
 
@@ -101,7 +105,7 @@ console.log(timeEl)
     function () {
       secondsLeft --;
 
-      timeEl.textContent = secondsLeft + "seconds remaining";
+      timeEl.textContent = secondsLeft + " seconds remaining";
 
 //You'll need to ehck if for more than it just being equal to 0 or if it's completed
 //the current question index (i) must be less than legth of array of questions    
@@ -115,5 +119,7 @@ if (secondsLeft === 0) {
 }
 
 function endQuiz(){
+  quiz.style.display = "none";
+  endgame.style.display = "block";
     console.log("ending quiz")
 }
