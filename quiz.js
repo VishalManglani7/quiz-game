@@ -65,19 +65,21 @@ function displayQuestion() {
     button.classList.add("button");
 
     //figure out what else you want to do to each button
-    button.addEventListener("click", function(){
-      checkAnswer(answer.correct);});
+    button.addEventListener("click", function(event){
+      const newTarget =event.target;
+      console.log(newTarget, "newTarget")
+      checkAnswer(answer.correct, newTarget);});
     answersEl.appendChild(button);
   });
 }
 
 //how to check if it's correct
-function checkAnswer(correct){
+function checkAnswer(correct, button){
     console.log(correct.target)
     console.dir(correct.target)
     if(correct){
       score += 10;
-      correct.target.classList.add("correct");}
+      button.classList.add("correct");}
     else{
       secondsLeft -= 15;}
     currentQuestionIndex++;
