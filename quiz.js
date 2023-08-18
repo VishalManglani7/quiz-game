@@ -1,11 +1,10 @@
 var intro = document.getElementById("intro");
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
-var endgame = document.getElementById("game-over")
-
+var endgame = document.getElementById("game-over");
+var score = 0;
 var secondsLeft
 var currentQuestionIndex
-var score
 
 var questions = [
   {
@@ -77,8 +76,8 @@ function displayQuestion() {
 
 //how to check if it's correct
 function checkAnswer(correct, button){
-    console.log(correct.target)
-    console.dir(correct.target)
+    console.log(button)
+    console.dir(button)
     if(correct){
       score += 10;
       button.classList.add("correct");}
@@ -121,5 +120,7 @@ if (secondsLeft === 0) {
 function endQuiz(){
   quiz.style.display = "none";
   endgame.style.display = "block";
+  var scoreDisplay = document.getElementById("score")
+  scoreDisplay.textContent = "Final score: " + score;
     console.log("ending quiz")
 }
