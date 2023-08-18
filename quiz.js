@@ -40,6 +40,7 @@ start.addEventListener("click", startQuiz);
 function startQuiz() {
     console.log("Starting quiz")
   start.style.display = "none";
+  endgame.style.display = "none";
   quiz.style.display = "block";
 console.log("Showing correct elements")
   currentQuestionIndex = 0;
@@ -122,6 +123,18 @@ function endQuiz(){
   quiz.style.display = "none";
   endgame.style.display = "block";
   var scoreDisplay = document.querySelector(".score");
+  var nameInput = document.querySelector(".username");
+  var submitButton = document.querySelector(".submit-score");
+  nameInput.style.display = "block";
+  submitButton.style.display = "block";
+  submitButton.addEventListener("click", function () {
+    var username = nameInput.value;
+    if (username) {
+      var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+      highScores.push({ name: username, score: score });
+      localStorage.setItem("highScores", JSON.stringify(highScores));}});
+
+
   scoreDisplay.textContent = "Final score: " + score;
     console.log("ending quiz")
 }
