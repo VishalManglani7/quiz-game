@@ -101,8 +101,8 @@ function checkAnswer(correct, button){
 
 function setTime() {
   var timeEl = document.querySelector(".timer");
-console.log(timeEl)
-  var timeInterval = setInterval(
+  console.log(timeEl)
+  timeInterval = setInterval(
     function () {
       secondsLeft --;
 
@@ -127,6 +127,7 @@ function endQuiz(){
   var submitButton = document.querySelector("#submit-score");
   nameInput.style.display = "block";
   submitButton.style.display = "block";
+  clearInterval(timeInterval);
   submitButton.addEventListener("click", function () {
     var username = nameInput.value;
     if (username) {
