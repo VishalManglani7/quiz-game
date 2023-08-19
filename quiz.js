@@ -6,6 +6,7 @@ var highscore = document.getElementById("high-scores");
 var score = 0;
 var secondsLeft
 var currentQuestionIndex
+var highscoreD = document.getElementById("high-scoresDisplay");
 
 //array of questions and answers for code to run through
 var questions = [
@@ -118,7 +119,7 @@ function setTime() {
 
 //You'll need to ehck if for more than it just being equal to 0 or if it's completed
 //the current question index (i) must be less than legth of array of questions    
-if (secondsLeft === 0) {
+if (secondsLeft <= 0) {
         clearInterval(timeInterval);
         endQuiz()
       }
@@ -147,21 +148,22 @@ function endQuiz(){
       highScores.push({ name: username, score: score });
       localStorage.setItem("highScores", JSON.stringify(highScores));
       nameInput.value = "";}});
+  
   //first part should grab from local storage above
-
-
-  //this part is still bugged, as leaderbaord should display in a list with name + score
+  //bug corrected in last push. highscore displays. need to clean this up by sorting, etc.
   highscore.addEventListener("click", showLeaderboard);
-  function showLeaderboard(){
-  var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-  var highScoresList = document.getElementById("high-scores-list");
-  //this part should turn it into a list
-  highScores.forEach(function (entry) {
-    var li = document.createElement("li");
-    li.textContent = entry.name + entry.score;
-    highScoresList.appendChild(li);
-    highscore.style.display = "block";
-  })};
+  function showLeaderboard() {
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    var highScoresList = document.getElementById("high-scores-list");
+    //this part should turn it into a list
+    highScores.forEach(function (entry) {
+      var li = document.createElement("li");
+      li.textContent = entry.name + " score: " + entry.score;
+      highScoresList.appendChild(li);
+    })
+    highscoreD.style.display = "block";
+      highScoresList.style.display = "block";
+  };
 
       //displays users final score at end of game
   scoreDisplay.textContent = "Final score: " + score;
