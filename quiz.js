@@ -123,8 +123,8 @@ function endQuiz(){
   quiz.style.display = "none";
   endgame.style.display = "block";
   var scoreDisplay = document.querySelector(".score");
-  var nameInput = document.querySelector(".username");
-  var submitButton = document.querySelector(".submit-score");
+  var nameInput = document.querySelector("#username");
+  var submitButton = document.querySelector("#submit-score");
   nameInput.style.display = "block";
   submitButton.style.display = "block";
   submitButton.addEventListener("click", function () {
