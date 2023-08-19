@@ -138,16 +138,33 @@ function endQuiz(){
   submitButton.style.display = "block";
   highscore.style.display = "block";
   clearInterval(timeInterval);
-  //creates a function to send username and score to local storage upon entering info
+  //creates a function to send username and score to local storage upon entering info. clears after user enters name.
+  //insures that field is array
   submitButton.addEventListener("click", function () {
     var username = nameInput.value;
     if (username) {
       var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
       highScores.push({ name: username, score: score });
-      localStorage.setItem("highScores", JSON.stringify(highScores));}});
+      localStorage.setItem("highScores", JSON.stringify(highScores));
+      nameInput.value = "";}});
+  //first part should grab from local storage above
+
+
+  //this part is still bugged, as leaderbaord should display in a list with name + score
+  highscore.addEventListener("click", showLeaderboard);
+  function showLeaderboard(){
+  var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+  var highScoresList = document.getElementById("high-scores-list");
+  //this part should turn it into a list
+  highScores.forEach(function (entry) {
+    var li = document.createElement("li");
+    li.textContent = entry.name + entry.score;
+    highScoresList.appendChild(li);
+    highscore.style.display = "block";
+  })};
 
       //displays users final score at end of game
   scoreDisplay.textContent = "Final score: " + score;
-    console.log("ending quiz")
-}
+    console.log("ending quiz")}
+
 
