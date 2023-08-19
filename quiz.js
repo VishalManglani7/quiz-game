@@ -2,10 +2,12 @@ var intro = document.getElementById("intro");
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
 var endgame = document.getElementById("game-over");
+var highscore = document.getElementById("high-scores");
 var score = 0;
 var secondsLeft
 var currentQuestionIndex
 
+//array of questions and answers for code to run through
 var questions = [
   {
     question: "question 1 goes here?",
@@ -36,11 +38,14 @@ var questions = [
   },
 ];
 
+//start quiz fuction upon pushing start. starts timer function. and questions should display upon pushing
+//start button and high score button should disappear here
 start.addEventListener("click", startQuiz);
 function startQuiz() {
     console.log("Starting quiz")
   start.style.display = "none";
   endgame.style.display = "none";
+  highscore.style.display = "none";
   quiz.style.display = "block";
 console.log("Showing correct elements")
   currentQuestionIndex = 0;
@@ -52,6 +57,8 @@ console.log("Showing correct elements")
   displayQuestion();
 }
 
+//display question function should run thru above noted questions. innerhtml set to empty so that buttons do not duplicate on screen
+//questions and answers should progress till the quiz is completed
 function displayQuestion() {
     console.log("Displaying questions")
   var questionEl = document.getElementById("question");
@@ -75,7 +82,8 @@ function displayQuestion() {
   });
 }
 
-//how to check if it's correct
+//checks if answer is correct. changes button to green if correct. red if wrong.
+//score increases by 10 if correct. -15 seconds if incorrect
 function checkAnswer(correct, button){
     console.log(button)
     console.dir(button)
@@ -119,6 +127,8 @@ if (secondsLeft === 0) {
   );
 }
 
+//end game function which should clear the quiz questions. stop the time interval, and populate the username submission form
+//high scores button should reappear
 function endQuiz(){
   quiz.style.display = "none";
   endgame.style.display = "block";
@@ -127,7 +137,9 @@ function endQuiz(){
   var submitButton = document.querySelector("#submit-score");
   nameInput.style.display = "block";
   submitButton.style.display = "block";
+  highscore.style.display = "block";
   clearInterval(timeInterval);
+  //creates a function to send username and score to local storage upon entering info
   submitButton.addEventListener("click", function () {
     var username = nameInput.value;
     if (username) {
@@ -135,7 +147,7 @@ function endQuiz(){
       highScores.push({ name: username, score: score });
       localStorage.setItem("highScores", JSON.stringify(highScores));}});
 
-
+      //displays users final score at end of game
   scoreDisplay.textContent = "Final score: " + score;
     console.log("ending quiz")
 }
