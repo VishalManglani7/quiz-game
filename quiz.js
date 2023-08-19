@@ -123,9 +123,8 @@ if (secondsLeft === 0) {
         endQuiz()
       }
     },
-    1000
-  );
-}
+    1000);
+  }
 
 //end game function which should clear the quiz questions. stop the time interval, and populate the username submission form
 //high scores button should reappear
@@ -151,3 +150,4 @@ function endQuiz(){
   scoreDisplay.textContent = "Final score: " + score;
     console.log("ending quiz")
 }
+
