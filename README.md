@@ -28,9 +28,12 @@ THEN I can save my initials and my score
 ```
 
 ## Visuals
+![project-visual](https://github.com/VishalManglani7/quiz-game/blob/main/visuals/Screenshot%202023-08-19%20at%2010.57.30%20AM.png)
 
 ## License
 MIT
 
 ## Project Status
 This project will be revisited to update and clean up the code, as well as adding CSS.
+
+https://vishalmanglani7.github.io/quiz-game/
